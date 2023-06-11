@@ -7,7 +7,7 @@ export const Layout = () => {
   return (
     <Box
       maxW={[300, 500, 700]}
-      h={'100%'}
+      minH={'100vh'}
       m={'0 auto'}
       bg={'gray.100'}
       borderRadius={'20px'}

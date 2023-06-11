@@ -10,6 +10,7 @@ import { useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { postContact } from 'redux/ContactsSlice/Operations';
 import { selectContacts } from 'redux/Selectors';
+import * as Yup from 'yup';
 
 export const AddContactForm = () => {
   const dispatch = useDispatch();
@@ -33,10 +34,29 @@ export const AddContactForm = () => {
         return;
       }
 
+      if (name.trim() === '' || number.trim() === ' ') {
+        toast({
+          title: `the field must not be empty`,
+          position: 'top',
+          status: 'error',
+          duration: 9000,
+          isClosable: true,
+        });
+        return;
+      }
+
       dispatch(postContact({ name, number }));
 
       formik.resetForm();
     },
+    validationSchema: Yup.object({
+      name: Yup.string()
+        .min(4, 'Must be 4 characters or more')
+        .required('Required'),
+      number: Yup.string()
+        .min(6, 'Must be 6 characters or more')
+        .required('Required'),
+    }),
   });
 
   const isInContacts = name => {

@@ -10,7 +10,6 @@ import { useEffect } from 'react';
 import { refreshUser } from 'redux/AuthSlice/Operations';
 import { RestrictedRoute } from './RestrictedRoute';
 import { PrivateRoute } from './PrivatRoute';
-import { Box, Skeleton, Stack } from '@chakra-ui/react';
 import { selectIsLoading } from 'redux/Selectors';
 
 export const App = () => {
