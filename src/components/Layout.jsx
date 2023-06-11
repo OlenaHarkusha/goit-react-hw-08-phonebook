@@ -1,6 +1,7 @@
-import { Box } from '@chakra-ui/react';
+import { Box, Spinner } from '@chakra-ui/react';
 
 import { Navigation } from 'components/Navigation';
+import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 
 export const Layout = () => {
@@ -17,7 +18,20 @@ export const Layout = () => {
         <Navigation />
       </header>
       <main>
-        <Outlet />
+        <Suspense
+          fallback={
+            <Spinner
+              thickness="4px"
+              speed="0.65s"
+              emptyColor="gray.200"
+              color="purple.500"
+              size="xl"
+              m={'0 auto'}
+            />
+          }
+        >
+          <Outlet />
+        </Suspense>
       </main>
     </Box>
   );
